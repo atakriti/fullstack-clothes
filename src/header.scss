@@ -1,0 +1,135 @@
+header{
+    background-color: rgb(58, 49, 49);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5%;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+   .left{
+       width: 70%;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+    //    padding-left: 1%;
+    p{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 10%;
+        font-size: 1.3vw;
+        color: white;
+        h1{
+            color: orangered;
+        }
+    }
+    form{
+        width: 70%;
+        // margin: 0 4%;
+        // border: 1px white solid;
+        background-color: white;
+        input{
+            width: 100%;
+            font-size: 1.1vw;
+            padding: 0.4% 1%;
+            background-color: transparent;
+            border: none;
+            outline: none;
+        }
+    }
+   }
+
+   .right{
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       width: 30%;
+       padding: 0 1%;
+    strong{
+        font-size: 1.1vw;
+        color: white;
+    }
+    .anchor{
+        text-decoration: none;
+        padding: 0.4% 2%;
+        position: relative;
+        color: black;
+        font-size: 0.8vw;
+        // transition: 1s;
+        background-color: white;
+        isolation: isolate;
+        border-radius:5px;
+
+
+       &::after{
+           content: "";
+           position: absolute;
+           background-color: skyblue;
+        border-radius:5px;
+        transition: 0.7s;
+           inset: 0;
+           z-index: -1;
+        width: 0%;
+        
+       }
+       &:hover{
+           &::after{
+               width: 100%;
+        transition: 0.7s;
+           }
+       }
+    }
+
+    div{
+        .cartIcon{
+            font-size: 2vw;
+        color: white;
+
+        }
+        span{
+            font-size: 1.5vw;
+        color: white;
+
+        }
+    }
+   }
+}
+
+// =================== Media query =====================
+@media only screen and (max-width:800px) {
+    header{
+        flex-wrap: wrap;
+        padding: 0 1%;
+       .left{
+           width: 100%;
+           p{
+               font-size: 4vw;
+               width: 18%;
+           }
+           form{
+               input{
+                   font-size: 4vw;
+               }
+           }
+       }
+       .right{
+           width: 100%;
+           padding: 1%;
+           strong{
+               font-size: 4vw;
+           }
+           .anchor{
+               font-size: 3vw;
+           }
+           div{
+               .cartIcon{
+                   font-size: 5vw;
+               }
+               span{
+                   font-size: 4vw;
+               }
+           }
+       }
+    }
+}

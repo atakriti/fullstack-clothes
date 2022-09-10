@@ -1,0 +1,178 @@
+import React, { useContext, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import {BsCart2} from "react-icons/bs"
+import "./single.scss"
+import { context } from './ContextFun'
+import axios from 'axios'
+
+function Single() {
+    // let [zero, setZero] = useState(false)
+    let { users, signin,clothesState } = useContext(context)
+    let { id } = useParams()
+    let foundParams = clothesState.find(item => item.id.toString() === id)
+    //! now the found is the specified user cart
+    let found = users.find(foundIt => foundIt.email === signin.email)
+    console.log("this is found", found);
+    console.log("this is foundParams", foundParams);
+    console.log("sign in", signin);
+    console.log("is paramas id",id);
+    //! here we put it in state to update the cart in setSelectedUser
+    let [SelectedUser, setSelectedUser] = useState(found)
+    console.log("This is the new Selected user:",SelectedUser);
+    
+    let handleAdd = (item) => {
+        if (SelectedUser.cart.some(single => single.id === item.id)) {
+            let newArray = SelectedUser.cart.map(itemMapped => itemMapped.id === item.id ? { ...itemMapped, quan: itemMapped.quan + 1 } : itemMapped)
+            setSelectedUser({ ...SelectedUser, cart: newArray })      
+            axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{ ...SelectedUser, cart: newArray })
+            return;
+        }
+        setDisabledSize(true)
+        axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{ ...SelectedUser, cart: [...SelectedUser.cart, item] })
+        setSelectedUser({ ...SelectedUser, cart: [...SelectedUser.cart, item] })
+        
+    }
+ 
+    
+    console.log("this is the users",users);
+
+  
+    // let handleDelete = (index) => {
+    //     let filterd = SelectedUser.cart.filter((item) => item.id !== index.id)
+    //     setSelectedUser({cart:filterd})
+    //   }
+    let handlePlus = (index) => {
+        let newArray = SelectedUser.cart.map((item) => item.id === index.id ? {...item,quan:item.quan + 1} : item)
+        // let pulsed = state.cart.find((item, i) => i === index)
+        axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{ ...SelectedUser, cart: newArray })
+        setSelectedUser({ ...SelectedUser, cart: newArray })
+        
+
+    }
+    
+    let handleMinus = (index) => {
+        let findItem = SelectedUser.cart.find((item) => item.id === index.id)
+        // if(!findItem) return   
+    
+        if (findItem.quan === 1) {
+          let filterdOut = SelectedUser.cart.filter((item) => item.id !== index.id)
+            setSelectedUser({...SelectedUser, cart: filterdOut })
+            axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: filterdOut })
+          return;
+        }
+        let newArray = SelectedUser.cart.map((item) => item.id === index.id ? {...item,quan:item.quan - 1} : item)
+        // let pulsed = state.cart.find((item, i) => i === index)
+        axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: newArray })
+        setSelectedUser({...SelectedUser, cart: newArray })
+        
+    }
+    
+    // let itemSel = SelectedUser.cart.map(item => item.id === id ? item.quan : "")
+
+    // console.log(itemSel);
+
+    let handleSize = (e) => {
+        let newArray = SelectedUser.cart.map((item) => item.id === Number(id) ? { ...item, size: e.target.value } : item)
+        axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: newArray })
+        setSelectedUser({ ...SelectedUser, cart: newArray })       
+        // setDisabledAdd(!disabledAdd)
+    }
+   
+
+// let disabledSize = SelectedUser.cart.find(item => item.id === Number(id))
+    let [disabledSize, setDisabledSize] = useState(false)    
+    let [disabledAdd,setDisabledAdd] = useState(false)
+    console.log("this is select user",SelectedUser);
+  return (
+      <div className='single'>
+          <header>
+              <div className="back">
+              <Link to="/main">Back</Link>
+              </div>
+              <div>
+      <Link to="/cart">
+            <BsCart2 className='cartIcon' />
+                      <span>{ SelectedUser?.cart.length}</span>
+      </Link >
+      </div>
+          </header>
+          {/* =================== Containt ============ */}
+          <div className="container">
+
+              <div className="cart">
+                  <a><img src={foundParams.img} alt="" /></a>
+                  <span>
+                      <h1>{foundParams.name}</h1>
+                      <strong>Price: {foundParams.price}€</strong>
+                      {/* ============= */}
+                      {foundParams.type.includes("clothes") && 
+                     <>
+                          <h3>Select The size</h3>
+                          <select disabled={!disabledSize} onChange={handleSize} >
+                            <option  value="" >Select</option>
+                          <option defaultChecked value="S">S</option>
+                          <option  value="M">M</option>
+                          <option  value="L">L</option>
+                              
+                          </select>
+                     </>
+                      }
+                      {/* ======================= */}
+                      {foundParams.type.includes("shoes") && foundParams.gender.includes("man") &&
+                     <>
+                          <h3>Select The size</h3>
+                          <select disabled={!disabledSize} onChange={handleSize} >
+                            <option  value="" >Select</option>
+                          <option defaultChecked value="38">38</option>
+                          <option  value="40">40</option>
+                          <option  value="42">42</option>
+                              
+                          </select>
+                     </>
+                      }
+                      {/* ====================== */}
+                      {foundParams.type.includes("shoes") && foundParams.gender.includes("women") &&
+                     <>
+                          <h3>Select The size</h3>
+                          <select disabled={!disabledSize} onChange={handleSize} >
+                            <option  value="" >Select</option>
+                          <option defaultChecked value="38">38</option>
+                          <option  value="40">40</option>
+                          <option  value="42">42</option>
+                              
+                          </select>
+                     </>
+                      }
+                      {/* ===================== */}
+                      {foundParams.type.includes("shoes") && foundParams.gender.includes("kids") && 
+                     <>
+                          <h3>Select The size</h3>
+                          <select disabled={!disabledSize} onChange={handleSize} >
+                            <option  value="" >Select</option>
+                          <option defaultChecked value="18">18</option>
+                          <option  value="20">20</option>
+                          <option  value="22">22</option>
+                              
+                          </select>
+                     </>
+                    }
+
+                      {/* ============= */}
+                      <div className="btns">
+                      <button  onClick={()=>handlePlus(foundParams)}>+</button>
+                      <button onClick={()=>handleMinus(foundParams)}>-</button>
+                      </div>
+                      {/* here in quantitiy i just took the quan of the item from the cart and show it */}
+                      <h4>Quantity: { SelectedUser.cart.map(item => item.id === Number(id) ? item.quan : "")}</h4>
+                      {/* <h4>{ SelectedUser.cart[0].quan}</h4> */}
+                      {/* <h4>Quantity: { SelectedUser.cart.map(item => item.quan)}</h4> */}
+                      <button onClick={()=>handleAdd(foundParams)}   >Add to cart</button>
+                  </span>
+              </div>
+          </div>
+          
+    </div>
+  )
+}
+
+export default Single

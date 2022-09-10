@@ -1,0 +1,614 @@
+// .render{
+//     position: absolute;
+//     inset: 0;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     color: white;
+//     font-size: 5vw;
+//     z-index: 100;
+// }
+
+.main {
+    position: relative;
+  
+  .baner {
+    height: 40vw;
+    margin-bottom: -20%;
+
+    a {
+      display: flex;
+      height: 100%;
+      width: 100%;
+
+      img {
+        width: 100%;
+
+        height: 100%;
+        object-fit: cover;
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgb(0, 0, 0),
+          rgba(255, 255, 255, 0)
+        );
+      }
+    }
+  }
+
+  .main-container{
+    padding: 0 4%;
+    position: relative;
+
+      .filter-container{
+        //   border: 1px red solid;
+          width: 65%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2%;
+
+          .filter{
+              display: flex;
+              font-size: 1.4vw;
+              cursor: pointer;
+          }
+          .type{
+            //   border: 1px red solid;
+            width: 50%;
+             
+
+              form{
+                  width: 100%;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  input{
+                    border: none;
+                    outline: none;
+                    font-size: 1.1vw;
+                    width: 30%;
+                    padding: 1% 0;
+                    border-bottom: none;
+                    background-color: rgb(58, 49, 49);
+                      color: white;
+                      cursor: pointer;
+                      border-radius: 5px;
+                      transition: 0.7s;
+                      &:hover{
+                         transition: 0.7s;
+                         background-color: skyblue;
+                     }
+                  }
+              }
+              
+          }
+
+      }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+    
+        .items {
+          width: 23%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border: 1px rgb(207, 207, 207) solid;
+          margin-bottom: 5%;
+          padding: 1%;
+          .imgAnchor {
+            display: flex;
+            height: 20vw;
+            width: 100%;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              overflow: hidden;
+             cursor: pointer;
+            }
+          }
+    
+          h2 {
+            font-size: 1.5vw;
+          }
+          h3 {
+            font-size: 1.1vw;
+            margin: 2% 0;
+          }
+          p {
+            width: 80%;
+            background-color: rgb(58, 49, 49);
+            position: relative;
+            isolation: isolate;
+            border-radius: 5px;
+            a {
+                display: flex;
+                text-decoration: none;
+                font-size: 1vw;
+                color: white;
+                justify-content: center;
+              padding: 3% 0;
+              
+
+            }
+            &::after{
+                content: "";
+                position: absolute;
+                background-color: skyblue;
+             border-radius:5px;
+             transition: 0.7s;
+                inset: 0;
+                z-index: -1;
+             width: 0%;
+             
+            }
+            &:hover{
+                &::after{
+                    width: 100%;
+             transition: 0.7s;
+                }
+            }
+          }
+        }
+      }
+  }
+//   ============================== Filter Section =====================
+
+.filterSection{
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 30%;
+    min-height: 100vh;
+    transform: translateX(-100%);
+    transition: 0.7s;
+
+    .filterSectionContainer{
+        padding: 2%;
+        position: sticky;
+        top: 0;
+        .top{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px rgb(182, 182, 182) solid;
+            padding: 1% 0;
+            margin-bottom: 2%;
+            h1{
+                font-size: 2vw;
+            }
+            svg{
+                font-size: 2vw;
+                cursor: pointer;
+            }
+        }
+        .gender{
+            // border: 1px red solid;
+            padding: 3% 0;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid rgb(182, 182, 182) ;
+            // margin-bottom: 3%;
+            h2{
+                font-size: 1.6vw;
+                margin-bottom: 2%;
+                // padding: 2% 0;
+                width: 30%;
+            }
+            span{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2%;
+                label{
+                    font-size: 1.3vw;
+                }
+                input{
+                    width: 1vw;
+                    height: 1vw;
+                }
+            }
+
+        }
+        .price{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4% 0;
+            label{
+                font-size: 1.3vw;
+            }
+            input{
+                width: 60%;
+                cursor: ew-resize;
+            }
+            span{
+                font-size: 1.2vw;
+            }
+        }
+
+        .type{
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid rgb(182, 182, 182) ;
+            border-top: 1px solid rgb(182, 182, 182) ;
+            margin-bottom: 3%;
+            padding: 3% 0;
+            h2{
+                font-size: 1.6vw;
+                margin-bottom: 2%;
+                // padding: 2% 0;
+                width: 30%;
+            }
+            span{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2%;
+                label{
+                    font-size: 1.3vw;
+                }
+                input{
+                    width: 1vw;
+                    height: 1vw;
+                }
+            }
+        }
+    }
+    
+}
+
+
+// ==================================== Show Filter ==========================
+.showFilter{
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 30%;
+    min-height: 100%;
+    transform: translateX(0%);
+    transition: 0.7s;
+
+    .filterSectionContainer{
+        padding: 2%;
+        position: sticky;
+        top: 0;
+        .top{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px rgb(182, 182, 182) solid;
+            padding: 1% 0;
+            margin-bottom: 2%;
+            h1{
+                font-size: 2vw;
+            }
+            svg{
+                font-size: 2vw;
+                cursor: pointer;
+            }
+        }
+        .gender{
+            // border: 1px red solid;
+            padding: 3% 0;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid rgb(182, 182, 182) ;
+            // margin-bottom: 3%;
+            h2{
+                font-size: 1.6vw;
+                margin-bottom: 2%;
+                // padding: 2% 0;
+                width: 30%;
+            }
+            span{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2%;
+                label{
+                    font-size: 1.3vw;
+width: 80%;
+                }
+                input{
+                    width: 1vw;
+                    height: 1vw;
+                }
+            }
+
+        }
+        .price{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4% 0;
+            label{
+                font-size: 1.3vw;
+              
+            }
+            input{
+                width: 60%;
+                cursor: ew-resize;
+            }
+            span{
+                font-size: 1.2vw;
+            }
+        }
+
+        .type{
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid rgb(182, 182, 182) ;
+            border-top: 1px solid rgb(182, 182, 182) ;
+            margin-bottom: 3%;
+            padding: 3% 0;
+            h2{
+                font-size: 1.6vw;
+                margin-bottom: 2%;
+                // padding: 2% 0;
+                width: 30%;
+            }
+            span{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2%;
+                label{
+                    font-size: 1.3vw;
+                    width: 80%;
+                }
+                input{
+                    width: 1vw;
+                    height: 1vw;
+                }
+            }
+        }
+    }
+    
+}
+
+// ============================ Show img ===================
+.showImg{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.692);
+   height: 100vh;
+    // padding:5% 2%;
+    // padding-top: 0.5%;
+    z-index: 11;
+    p{
+        text-align: right;
+        // padding: 0.5%;
+        padding-top: 1%;
+        position: sticky;
+        top: 5%;
+        z-index: 10;
+        svg{
+            background-color: white;
+            position: fixed;
+            top: 1%;
+            right: 1%;
+            font-size: 1.5vw;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    }
+   .containerShowImg{
+       width: 100%;
+       height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+   }
+   
+}
+// ======================== Up =====================
+    .up{
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
+        a{
+            text-decoration: none;
+            color:black;
+            svg{
+                font-size: 2vw;
+            }
+        }
+    }
+}
+
+
+// ==================================== Media query ==================
+@media only screen and (max-width:800px) {
+    .main{
+        .baner{
+            height: 80vw;
+        }
+        .main-container{
+            .filter-container{
+                width: 100%;
+                .filter{
+                    font-size: 5vw;
+                }
+                .type{
+                width: 70%;
+                    form{
+                        input{
+                            font-size: 3.5vw;
+                        }
+                    }
+                }
+            }
+
+            .container{
+                .items{
+                    width: 47%;
+                    .imgAnchor{
+                        height: 40vw;
+                    }
+                    h2{
+                        font-size: 3.5vw;
+                    }
+                    h3{
+                        font-size: 3.5vw;
+                    }
+                    p{
+                        a{
+                         font-size: 3.5vw;
+
+                        }
+                    }
+                }
+            }
+        }
+
+        // ================= filter section ================
+
+        .filterSection{
+            width: 80%;
+            .filterSectionContainer{
+                .top{
+                    h1{
+                        font-size: 5vw;
+                    }
+                    svg{
+                        font-size: 5vw;
+                    }
+                }
+
+                .gender{
+                    h2{
+                        font-size: 4vw;
+                    }
+                    span{
+                        label{
+                            font-size: 4vw;
+                        }
+                        input{
+                            width: 4vw;
+                            height: 4vw;
+                        }
+                    }
+                }
+
+                .price{
+                    label{
+                        font-size: 4vw;
+                    }
+                    span{
+                        font-size: 4vw;
+                    }
+                }
+                .type{
+                    h2{
+                        font-size: 4vw;
+                    }
+                    span{
+                        label{
+                            font-size: 4vw;
+                        }
+                        input{
+                            width: 4vw;
+                            height: 4vw;
+                        }
+                    }
+                }
+            }
+        }
+        // ============================
+        .showFilter{
+            width: 80%;
+            .filterSectionContainer{
+                .top{
+                    h1{
+                        font-size: 5vw;
+                    }
+                    svg{
+                        font-size: 5vw;
+                    }
+                }
+
+                .gender{
+                    h2{
+                        font-size: 4vw;
+                    }
+                    span{
+                        label{
+                            font-size: 4vw;
+                        }
+                        input{
+                            width: 4vw;
+                            height: 4vw;
+                        }
+                    }
+                }
+
+                .price{
+                    label{
+                        font-size: 4vw;
+                    }
+                    span{
+                        font-size: 4vw;
+                    }
+                }
+                .type{
+                    h2{
+                        font-size: 4vw;
+                    }
+                    span{
+                        label{
+                            font-size: 4vw;
+                        }
+                        input{
+                            width: 4vw;
+                            height: 4vw;
+                        }
+                    }
+                }
+            }
+        }
+        // ============ Show img============
+        .showImg{
+            p{
+                padding-right: 4%;
+                svg{
+                    font-size: 7vw;
+                }
+            }
+            .containerShowImg{
+                a{
+                    width: 100%;
+                }
+            }
+        }
+        // ============ up ============
+        .up{
+            a{
+                svg{
+                    font-size: 8vw;
+                }
+            }
+        }
+    }
+}

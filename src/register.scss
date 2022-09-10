@@ -1,0 +1,52 @@
+.register{
+    height: 100vh;
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(58, 49, 49);
+        padding:0.5% 1%;
+        h2{
+            color: white;
+        }
+        form{
+            width: 40%;
+            display: flex;
+            justify-content: space-between;
+            // align-items: center;
+            input{
+                width: 37%;
+                padding:0.5% 1%;
+            }
+            button{
+                width: 20%;
+
+            }
+        }
+    }
+    .signup{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 2%;
+        a{
+            display: flex;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        form{
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+            input{
+                width: 80%;
+                padding:  1%;
+            }
+            button{
+                width: 20%;
+            }
+        }
+    }
+}
