@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import {BsCart2} from "react-icons/bs"
 import "./single.scss"
@@ -7,7 +7,7 @@ import axios from 'axios'
 
 function Single() {
     // let [zero, setZero] = useState(false)
-    let { users, signin,clothesState } = useContext(context)
+    let { users, signin,clothesState,refreshUsers,setUsers } = useContext(context)
     let { id } = useParams()
     let foundParams = clothesState.find(item => item.id.toString() === id)
     //! now the found is the specified user cart
@@ -34,6 +34,24 @@ function Single() {
     }
  
     
+    useEffect(() => {
+      console.log("loading data");
+      console.log("USER",users);
+      refreshUsers().then(res => {
+        setUsers(res)
+       
+      })
+    }, [])
+    
+  
+    useEffect(() => {
+      setSelectedUser(found)
+    },[users])
+  
+  
+
+
+  
     console.log("this is the users",users);
 
   
@@ -101,12 +119,12 @@ function Single() {
           <div className="container">
 
               <div className="cart">
-                  <a><img src={foundParams.img} alt="" /></a>
+                  <a><img src={foundParams?.img} alt="" /></a>
                   <span>
-                      <h1>{foundParams.name}</h1>
-                      <strong>Price: {foundParams.price}€</strong>
+                      <h1>{foundParams?.name}</h1>
+                      <strong>Price: {foundParams?.price}€</strong>
                       {/* ============= */}
-                      {foundParams.type.includes("clothes") && 
+                      {foundParams?.type.includes("clothes") && 
                      <>
                           <h3>Select The size</h3>
                           <select disabled={!disabledSize} onChange={handleSize} >
@@ -119,7 +137,7 @@ function Single() {
                      </>
                       }
                       {/* ======================= */}
-                      {foundParams.type.includes("shoes") && foundParams.gender.includes("man") &&
+                      {foundParams?.type.includes("shoes") && foundParams.gender.includes("man") &&
                      <>
                           <h3>Select The size</h3>
                           <select disabled={!disabledSize} onChange={handleSize} >
@@ -132,7 +150,7 @@ function Single() {
                      </>
                       }
                       {/* ====================== */}
-                      {foundParams.type.includes("shoes") && foundParams.gender.includes("women") &&
+                      {foundParams?.type.includes("shoes") && foundParams.gender.includes("women") &&
                      <>
                           <h3>Select The size</h3>
                           <select disabled={!disabledSize} onChange={handleSize} >
@@ -145,7 +163,7 @@ function Single() {
                      </>
                       }
                       {/* ===================== */}
-                      {foundParams.type.includes("shoes") && foundParams.gender.includes("kids") && 
+                      {foundParams?.type.includes("shoes") && foundParams.gender.includes("kids") && 
                      <>
                           <h3>Select The size</h3>
                           <select disabled={!disabledSize} onChange={handleSize} >
@@ -164,7 +182,7 @@ function Single() {
                       <button onClick={()=>handleMinus(foundParams)}>-</button>
                       </div>
                       {/* here in quantitiy i just took the quan of the item from the cart and show it */}
-                      <h4>Quantity: { SelectedUser.cart.map(item => item.id === Number(id) ? item.quan : "")}</h4>
+                      <h4>Quantity: { SelectedUser?.cart.map(item => item.id === Number(id) ? item.quan : "")}</h4>
                       {/* <h4>{ SelectedUser.cart[0].quan}</h4> */}
                       {/* <h4>Quantity: { SelectedUser.cart.map(item => item.quan)}</h4> */}
                       <button onClick={()=>handleAdd(foundParams)}   >Add to cart</button>

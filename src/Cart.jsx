@@ -50,7 +50,7 @@ function Cart() {
 
   
 
-  let sum = SelectedUser.cart.reduce(
+  let sum = SelectedUser?.cart.reduce(
     (prev, curr) => prev + curr.quan * curr.price,
     0
   );
@@ -103,7 +103,7 @@ function Cart() {
         <div>
           <Link to="/cart">
             <BsCart2 className="cartIcon" />
-            <span>{SelectedUser.cart.length}</span>
+            <span>{SelectedUser?.cart.length}</span>
           </Link>
         </div>
       </header>
@@ -111,7 +111,7 @@ function Cart() {
       <div className="cartContainer">
        <div className="cont">
           <div className="left">
-            {SelectedUser.cart.map((item) => (
+            {SelectedUser?.cart.map((item) => (
               <div className="cartItem">
                 <Link to={`/single/${item.id}`}>
                   <img src={item.img} alt="" />
@@ -131,10 +131,10 @@ function Cart() {
                      
                           
                             <table >
-                                <input className="inputNone" type="text" name="username" value={found.username} />
-                                <input className="inputNone" type="text" name="email" value={found.email} />
-                                <input className="inputNone" type="text" name="address" value={found.address} />
-                                {SelectedUser.cart.map((item) => (
+                                <input className="inputNone" type="text" name="username" value={found?.username} />
+                                <input className="inputNone" type="text" name="email" value={found?.email} />
+                                <input className="inputNone" type="text" name="address" value={found?.address} />
+                                {SelectedUser?.cart.map((item) => (
                                <>
                                     <tr>
                                         <th>Product</th>
@@ -170,7 +170,7 @@ function Cart() {
             <div className={isBuy ? "buyPop" : "displayNone"}>
                <div className="buyPopContainer">
                     <h1><BsPaypal /> Pay with Paypal: xxxxxxxx</h1>
-                    <p> <b>Important:as a reference give your E-Mail ({ found.email})</b> <br /> After sending the money, you can click on "confirm to buy" <br />then you will get a confirmation E-Mail</p>
+                    <p> <b>Important:as a reference give your E-Mail ({ found?.email})</b> <br /> After sending the money, you can click on "confirm to buy" <br />then you will get a confirmation E-Mail</p>
                     <div className="ask">
                       <input type="checkbox" name="ask" id="ask" onClick={()=>setIsSetMoney(!isSentMoney)} />
                     <label htmlFor="ask">I sent the money</label>

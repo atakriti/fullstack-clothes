@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.6.2",
-    "react-to-print": "^2.14.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,7 +13,9 @@
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-to-print": "^2.14.7",
     "sass": "^1.54.9",
+    "use-local-storage": "^2.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

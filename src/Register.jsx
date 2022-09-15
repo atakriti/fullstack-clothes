@@ -60,7 +60,9 @@ function Register() {
       address: "",
       password: "",
     });
-      setStep(1)
+    setStep(1)
+    getUsers().then(res => setUsers(res))
+    
   };
 
   return (
