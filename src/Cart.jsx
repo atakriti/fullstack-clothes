@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { BsCart2, BsPaypal } from "react-icons/bs";
 import {GrFormClose} from "react-icons/gr"
 import {AiFillPrinter} from "react-icons/ai"
@@ -12,19 +12,43 @@ import axios from "axios";
 // import jsPDF from "jspdf";
 function Cart() {
   let {id} = useParams()
-    let { users, signin, clothesState } = useContext(context);
+    let { users,setUsers, signin, clothesState,refreshUsers } = useContext(context);
     let [isBuy,setIsBuy] = useState(false)
  let [isSentMoney,setIsSetMoney] = useState(false)
   
   let found = users.find((foundIt) => foundIt.email === signin.email);
   let [SelectedUser, setSelectedUser] = useState( found);
   console.log(SelectedUser);
+
+  useEffect(() => {
+    console.log("loading data");
+    console.log("USER",users);
+    refreshUsers().then(res => {
+      setUsers(res)
+     
+    })
+  }, [])
+  
+
+  useEffect(() => {
+    setSelectedUser(found)
+  },[users])
+
+
+
+
+
+
+
   let handleDelete = (index) => {
       let filterd = SelectedUser.cart.filter((item) => item.id !== index.id);
-      
+    // setSelectedUser({...SelectedUser,cart:filterd});
+    setSelectedUser({ cart: filterd })
+    console.log("select user.........",SelectedUser);
       axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{ cart: filterd })
-    setSelectedUser({ cart: filterd });
   };
+
+  
 
   let sum = SelectedUser.cart.reduce(
     (prev, curr) => prev + curr.quan * curr.price,

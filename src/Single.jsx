@@ -62,6 +62,7 @@ function Single() {
         }
         let newArray = SelectedUser.cart.map((item) => item.id === index.id ? {...item,quan:item.quan - 1} : item)
         // let pulsed = state.cart.find((item, i) => i === index)
+        
         axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: newArray })
         setSelectedUser({...SelectedUser, cart: newArray })
         

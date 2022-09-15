@@ -7,10 +7,17 @@ function ContextFun(props) {
         password: "",
       });
       let [searchValue,setSearchValue] = useState("")
-      let [clothesState, setClothesState] = useState([])
+    let [clothesState, setClothesState] = useState([])
+    
+    let refreshUsers = async () => {
+        
+            let res = await fetch("http://localhost:4000/getUsers");
+            let json = await res.json();
+            return json       
+    }
 
   return (
-      <context.Provider value={{clothesState, setClothesState,searchValue,setSearchValue,users, setUsers,signin, setSignin}}>{ props.children}</context.Provider>
+      <context.Provider value={{clothesState, setClothesState,searchValue,setSearchValue,users, setUsers,signin, setSignin,refreshUsers}}>{ props.children}</context.Provider>
   )
 }
 

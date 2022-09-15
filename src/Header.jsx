@@ -1,14 +1,29 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {context} from "./ContextFun"
 import "./header.scss"
 import {BsCart2} from "react-icons/bs"
 import { Link } from 'react-router-dom'
 function Header() {
   let { users, signin } = useContext(context)
-  let {searchValue,setSearchValue} = useContext(context)
+  let {searchValue,setSearchValue,refreshUsers,setUsers} = useContext(context)
   let found = users.find(foundIt => foundIt.email === signin.email)
   let [SelectedUser, setSelectedUser] = useState(found)
   console.log(SelectedUser);
+
+  //! ===================================== This is the must imprtant part =========================
+  useEffect(() => {
+
+    refreshUsers().then(res => {
+      setUsers(res)
+    })
+  }, [])
+
+  useEffect(() => {
+    setSelectedUser(found)
+  }, [users])
+  
+//! =========================================================================================
+
   return (
     <header>
      <div className='left'>

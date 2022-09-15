@@ -16,6 +16,9 @@ function Clothes() {
   useEffect(() => {
     getClothes().then(res => setClothesState(res))
   }, [])
+    
+
+
 // =================== this is from the old one =================
 
   let [typeClothes, setTypeClothes] = useState("")
