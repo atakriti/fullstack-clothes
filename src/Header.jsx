@@ -24,6 +24,10 @@ function Header() {
   
 //! =========================================================================================
 
+  let handleSubmit = (e) => {
+      e.preventDefault()
+    }
+  
   return (
     <header>
      <div className='left'>
@@ -32,7 +36,7 @@ function Header() {
         <p><h1>C</h1>lothes</p>
        
         {/* ============== Search ============ */}
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
           <input placeholder='Search for the product...' onChange={(e)=>setSearchValue(e.target.value)} type="search" name="search" value={searchValue} />
         </form>
      </div>

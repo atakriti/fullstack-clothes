@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import {GrFormClose} from "react-icons/gr"
 import { BiFilterAlt } from "react-icons/bi"
 import Baner from "./baner.jpg"
-
+import ReactPaginate from 'react-paginate'
 import { Link } from 'react-router-dom'
 import "./clothes.scss"
 import { context } from './ContextFun'
@@ -38,16 +38,18 @@ function Clothes() {
         item.type.includes(filterType.toLowerCase()) &&
         item.name.toLowerCase().includes(searchValue.toLowerCase()) 
     )
-
     let handleShow = (item) => {
       setImage(item)
       setIsShowImg(true)
   }
 
 
+    // ======================== More button ====================
+    let [slice, setSlice] = useState(10)
+    // let slicing = () => {
 
-
-
+    // }
+   
   return (
     <div className='main'>
     {/* ===================== Filter Section ============= */}
@@ -144,17 +146,22 @@ function Clothes() {
         </div>
         <div className="container">
             
-            {clothesState.filter(filterd).map((item) => (
-                <div key={item.id} className="items">
-                    <a onClick={()=>handleShow(item.img)}  className='imgAnchor' >
-                    <img src={item.img} alt="" />
-                    </a>
-                    <h2>{item.name}</h2>
-                    <h3>Price:{item.price}€</h3>
-                    <p> <Link to={`/single/${item.id}`}>Buy</Link></p>
-                </div>
-            ))}
-        </div>
+                  {clothesState.filter(filterd).map((item) => (
+                      <div key={item.id} className="items">
+                          <a onClick={() => handleShow(item.img)} className='imgAnchor' >
+                              <img src={item.img} alt="" />
+                          </a>
+                          <h2>{item.name}</h2>
+                          <h3>Price:{item.price}€</h3>
+                          <p> <Link to={`/single/${item.id}`}>Buy</Link></p>
+                      </div>
+                  )).slice(0, slice)}
+                 
+              </div>
+              
+              {clothesState.filter(filterd).length > slice && <div className='load-more'>
+                  <button onClick={()=>setSlice(slice + slice)}>Load more</button>
+              </div> }
     </div>
     {/* ================================ Show Img ================== */}
     {isShowImg &&
