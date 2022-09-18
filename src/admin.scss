@@ -1,0 +1,76 @@
+.admin{
+    background-color: darkred;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3%;
+    h1{
+        font-size: 3vw;
+        margin-bottom: 3%;
+        color: white;
+    }
+    .container{
+        width: 50%;
+       form{
+        display: flex;
+        flex-direction: column;
+        input{
+            font-size: 1.4vw;
+            padding: 0.5%;
+            margin-bottom: 1%;
+        }
+        select{
+            font-size: 1.4vw;
+            padding: 0.5%;
+            margin-bottom: 1%;
+        }
+        button{
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            padding: 2% 0;
+            font-size: 1.4vw;
+            margin-top: 2%;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+       }
+       a{
+           color: white;
+           font-size: 1.4vw;
+           margin-top: 3%;
+           display: flex;
+           text-decoration: none;
+       }
+    }
+}
+
+
+
+// ================== Media query ================
+@media only screen and (max-width:800px) {
+    .admin{
+        h1{
+            font-size: 6vw;
+        }
+        .container{
+            width: 90%;
+            form{
+                input{
+                    font-size:3vw;
+                }
+                select{
+                    font-size: 3vw;
+                }
+                button{
+                    font-size: 3vw;
+                }
+            }
+            a{
+                font-size: 3vw;
+            }
+        }
+    }
+}

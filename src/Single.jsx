@@ -9,7 +9,9 @@ function Single() {
     // let [zero, setZero] = useState(false)
     let { users, signin,clothesState,refreshUsers,setUsers } = useContext(context)
     let { id } = useParams()
-    let foundParams = clothesState.find(item => item.id.toString() === id)
+    // let foundParams = clothesState.find(item => item.id.toString() === id )
+    let foundParams = clothesState.find(item => item._id === id || item.id.toString() === id )
+  
     //! now the found is the specified user cart
     let found = users.find(foundIt => foundIt.email === signin.email)
     console.log("this is found", found);
@@ -22,7 +24,7 @@ function Single() {
     
     let handleAdd = (item) => {
         if (SelectedUser.cart.some(single => single.id === item.id)) {
-            let newArray = SelectedUser.cart.map(itemMapped => itemMapped.id === item.id ? { ...itemMapped, quan: itemMapped.quan + 1 } : itemMapped)
+            let newArray = SelectedUser.cart.map(itemMapped => itemMapped.id === item.id || itemMapped._id === item._id ? { ...itemMapped, quan: itemMapped.quan + 1 } : itemMapped)
             setSelectedUser({ ...SelectedUser, cart: newArray })      
             axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{ ...SelectedUser, cart: newArray })
             return;
@@ -60,7 +62,7 @@ function Single() {
     //     setSelectedUser({cart:filterd})
     //   }
     let handlePlus = (index) => {
-        let newArray = SelectedUser.cart.map((item) => item.id === index.id ? {...item,quan:item.quan + 1} : item)
+        let newArray = SelectedUser.cart.map((item) => item.id === index.id || item._id === index._id ? {...item,quan:item.quan + 1} : item)
         // let pulsed = state.cart.find((item, i) => i === index)
         axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{ ...SelectedUser, cart: newArray })
         setSelectedUser({ ...SelectedUser, cart: newArray })
@@ -69,16 +71,16 @@ function Single() {
     }
     
     let handleMinus = (index) => {
-        let findItem = SelectedUser.cart.find((item) => item.id === index.id)
+        let findItem = SelectedUser.cart.find((item) => item.id === index.id || item._id === index._id)
         // if(!findItem) return   
     
         if (findItem.quan === 1) {
-          let filterdOut = SelectedUser.cart.filter((item) => item.id !== index.id)
+          let filterdOut = SelectedUser.cart.filter((item) => item.id !== index.id || item._id !== index._id)
             setSelectedUser({...SelectedUser, cart: filterdOut })
             axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: filterdOut })
           return;
         }
-        let newArray = SelectedUser.cart.map((item) => item.id === index.id ? {...item,quan:item.quan - 1} : item)
+        let newArray = SelectedUser.cart.map((item) => item.id === index.id || item._id === index._id ? {...item,quan:item.quan - 1} : item)
         // let pulsed = state.cart.find((item, i) => i === index)
         
         axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: newArray })
@@ -91,7 +93,7 @@ function Single() {
     // console.log(itemSel);
 
     let handleSize = (e) => {
-        let newArray = SelectedUser.cart.map((item) => item.id === Number(id) ? { ...item, size: e.target.value } : item)
+        let newArray = SelectedUser.cart.map((item) => item.id === Number(id) || item._id === id ? { ...item, size: e.target.value } : item)
         axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: newArray })
         setSelectedUser({ ...SelectedUser, cart: newArray })       
         // setDisabledAdd(!disabledAdd)
@@ -182,7 +184,7 @@ function Single() {
                       <button onClick={()=>handleMinus(foundParams)}>-</button>
                       </div>
                       {/* here in quantitiy i just took the quan of the item from the cart and show it */}
-                      <h4>Quantity: { SelectedUser?.cart.map(item => item.id === Number(id) ? item.quan : "")}</h4>
+                      <h4>Quantity: { SelectedUser?.cart.map(item => item.id === Number(id) || item._id === id ? item.quan : "")}</h4>
                       {/* <h4>{ SelectedUser.cart[0].quan}</h4> */}
                       {/* <h4>Quantity: { SelectedUser.cart.map(item => item.quan)}</h4> */}
                       <button onClick={()=>handleAdd(foundParams)}   >Add to cart</button>

@@ -23,8 +23,15 @@ function ContextFun(props) {
       setClothesState(json)
     }
   
+  //   let newProduct = async () => {
+  //     let res = await fetch("http://localhost:4000/newProduct")
+  //     let json = await res.json()
+  //     return json
+  // }
+  
   useEffect(() => {
     getClothes()
+    // newProduct()
   },[])
   
 

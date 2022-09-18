@@ -5,7 +5,7 @@ import Home from "./Home"
 import "./style.scss"
 import Single from "./Single";
 import Cart from "./Cart";
-
+import Admin from "./Admin"
 function App() {
   return (
     <div className="App">
@@ -14,6 +14,7 @@ function App() {
         <Route path="/main" element={<Home />} />
         <Route path="/single/:id" element={<Single/>} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </div>
   );

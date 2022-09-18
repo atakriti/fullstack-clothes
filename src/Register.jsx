@@ -35,6 +35,8 @@ function Register() {
         e.preventDefault()
         if (users.some(item => item.email === signin.email && item.password === signin.password)) {
             navigate("/main")
+        } else if (signin.email === "admin@admin.admin" && signin.password === "admin") {
+          navigate("/admin")
         } else {
             alert("Username or Password is not correct !")
         }

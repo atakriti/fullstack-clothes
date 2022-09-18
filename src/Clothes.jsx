@@ -2,21 +2,29 @@ import React, { useContext, useEffect, useState } from 'react'
 import {GrFormClose} from "react-icons/gr"
 import { BiFilterAlt } from "react-icons/bi"
 import Baner from "./baner.jpg"
-import ReactPaginate from 'react-paginate'
 import { Link } from 'react-router-dom'
 import "./clothes.scss"
 import { context } from './ContextFun'
 function Clothes() {
 
+    let { searchValue, setSearchValue,clothesState, setClothesState } = useContext(context)
   let getClothes = async () => {
     let res = await fetch("http://localhost:4000/data")
     let json = await res.json()
     return json
   }
-  useEffect(() => {
-    getClothes().then(res => setClothesState(res))
-  }, [])
-    
+    // let newProduct = async () => {
+    //     let res = await fetch("http://localhost:4000/newProduct")
+    //     let json = await res.json()
+    //     return json
+    // }
+    useEffect(() => {
+
+        getClothes().then(res => setClothesState(res))
+        // newProduct().then(res=> setClothesState([...clothesState,res]))
+    }, [])
+ 
+    console.log(clothesState);
 
 
 // =================== this is from the old one =================
@@ -27,7 +35,6 @@ function Clothes() {
     let [showFilter, setShowFilter] = useState(false)
     let [image, setImage] = useState("")
     let [isShowImg,setIsShowImg] = useState(false)
-  let { searchValue, setSearchValue,clothesState, setClothesState } = useContext(context)
 
   let defaultPrice = 500
     let [price,setPrice] = useState(defaultPrice)
@@ -153,7 +160,7 @@ function Clothes() {
                           </a>
                           <h2>{item.name}</h2>
                           <h3>Price:{item.price}€</h3>
-                          <p> <Link to={`/single/${item.id}`}>Buy</Link></p>
+                          <p> <Link to={`/single/${item._id || item.id}`}>Buy</Link></p>
                       </div>
                   )).slice(0, slice)}
                  

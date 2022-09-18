@@ -1,5 +1,7 @@
 import React from 'react'
 import "./footer.scss"
+import Android from "./android.png"
+import Window from "./window.png"
 function Footer() {
   return (
       <footer>
@@ -11,12 +13,12 @@ function Footer() {
          <div className='right'>
               <div className="android">
                   <h5>Get this website as App on andorid</h5>
-                  {/* <a href=""></a> */}
+                  <a ><img src={Android} alt="" /></a>
               </div>
               <hr />
               <div className="window">
               <h5>Get this website as App on Window</h5>
-              {/* <a href=""></a> */}
+              <a ><img src={Window} alt="" /></a>
               </div>
          </div>
     </footer>
