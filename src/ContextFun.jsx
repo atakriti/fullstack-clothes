@@ -8,7 +8,8 @@ function ContextFun(props) {
         password: "",
       });
       let [searchValue,setSearchValue] = useState("")
-    let [clothesState, setClothesState] = useState([])
+  let [clothesState, setClothesState] = useState([])
+  let [newClothes,setNewClothes] = useState([])
     
     let refreshUsers = async () => {
         
@@ -17,26 +18,33 @@ function ContextFun(props) {
             return json       
     }
   
-    let getClothes = async () => {
-      let res = await fetch("http://localhost:4000/data")
-      let json = await res.json()
-      setClothesState(json)
-    }
+    // let getClothes = async () => {
+    //   let res = await fetch("http://localhost:4000/data")
+    //   let json = await res.json()
+    //   setClothesState(json)
+    // }
   
   //   let newProduct = async () => {
   //     let res = await fetch("http://localhost:4000/newProduct")
   //     let json = await res.json()
   //     return json
   // }
+  let newProduct = async () => {
+    let res = await fetch("http://localhost:4000/newProduct")
+    let json = await res.json()
+    return json
+}
   
   useEffect(() => {
-    getClothes()
+    // getClothes()
+    newProduct()
+    refreshUsers()
     // newProduct()
   },[])
   
 
   return (
-      <context.Provider value={{clothesState, setClothesState,searchValue,setSearchValue,users, setUsers,signin, setSignin,refreshUsers,getClothes}}>{ props.children}</context.Provider>
+      <context.Provider value={{clothesState, setClothesState,searchValue,setSearchValue,users, setUsers,signin, setSignin,refreshUsers,newClothes,setNewClothes,newProduct}}>{ props.children}</context.Provider>
   )
 }
 

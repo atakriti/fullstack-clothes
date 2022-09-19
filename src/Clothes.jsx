@@ -8,23 +8,24 @@ import { context } from './ContextFun'
 function Clothes() {
 
     let { searchValue, setSearchValue,clothesState, setClothesState } = useContext(context)
-  let getClothes = async () => {
-    let res = await fetch("http://localhost:4000/data")
-    let json = await res.json()
-    return json
-  }
-    // let newProduct = async () => {
-    //     let res = await fetch("http://localhost:4000/newProduct")
-    //     let json = await res.json()
-    //     return json
-    // }
+//   let getClothes = async () => {
+//     let res = await fetch("http://localhost:4000/data")
+//     let json = await res.json()
+//     return json
+//   }
+    let newProduct = async () => {
+        let res = await fetch("http://localhost:4000/newProduct")
+        let json = await res.json()
+        return json
+    }
     useEffect(() => {
 
-        getClothes().then(res => setClothesState(res))
-        // newProduct().then(res=> setClothesState([...clothesState,res]))
+        // getClothes().then(res => setClothesState(res)) // all
+        newProduct().then(res => setClothesState(res)) // new
     }, [])
+
  
-    console.log(clothesState);
+    console.log("This all",clothesState);
 
 
 // =================== this is from the old one =================
@@ -150,17 +151,18 @@ function Clothes() {
                 </form>
             </div>}
             
-        </div>
+              </div>
+              {/* =================================================================== MAPING =================================================== */}
         <div className="container">
             
                   {clothesState.filter(filterd).map((item) => (
-                      <div key={item.id} className="items">
+                      <div key={item._id} className="items">
                           <a onClick={() => handleShow(item.img)} className='imgAnchor' >
                               <img src={item.img} alt="" />
                           </a>
                           <h2>{item.name}</h2>
                           <h3>Price:{item.price}€</h3>
-                          <p> <Link to={`/single/${item._id || item.id}`}>Buy</Link></p>
+                          <p> <Link to={`/single/${item._id}`}>Buy</Link></p>
                       </div>
                   )).slice(0, slice)}
                  

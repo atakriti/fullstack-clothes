@@ -5,9 +5,7 @@ import "./admin.scss"
 import { context } from './ContextFun'
 function Admin() {
     let { setClothesState, clothesState } = useContext(context)
-    let plusId = clothesState[clothesState.length -1]
     let [values, setValues] = useState({ name: "", price: null, img: "", quan: 1, gender: "", type: "", size: ""})
-    console.log("this is the last one",plusId);
     let handleChange = (e) => {
         let name = e.target.name
         let value = e.target.value
@@ -25,7 +23,7 @@ function Admin() {
       
         setClothesState([...clothesState, values])
         e.target.reset()
-        setValues({ name: "", price: null, img: "", quan: 1, gender: "", type: "", size: "", id: plusId.id + 1 })
+        setValues({ name: "", price: null, img: "", quan: 1, gender: "", type: "", size: ""})
         alert("The product is successfuly added")
     }
   console.log(clothesState);

@@ -11,7 +11,8 @@ import axios from "axios";
 
 // import jsPDF from "jspdf";
 function Cart() {
-  let {id} = useParams()
+  let { id } = useParams()
+  // console.log("this is id",id);
     let { users,setUsers, signin, clothesState,refreshUsers } = useContext(context);
     let [isBuy,setIsBuy] = useState(false)
  let [isSentMoney,setIsSetMoney] = useState(false)
@@ -41,7 +42,7 @@ function Cart() {
 
 
   let handleDelete = (index) => {
-      let filterd = SelectedUser.cart.filter((item) => item.id !== index.id);
+      let filterd = SelectedUser.cart.filter((item) => item?._id !== index?._id);
     // setSelectedUser({...SelectedUser,cart:filterd});
     setSelectedUser({ cart: filterd })
     console.log("select user.........",SelectedUser);
@@ -51,7 +52,7 @@ function Cart() {
   
 
   let sum = SelectedUser?.cart.reduce(
-    (prev, curr) => prev + curr.quan * curr.price,
+    (prev, curr) => prev + curr?.quan * curr?.price,
     0
   );
     
@@ -113,13 +114,13 @@ function Cart() {
           <div className="left">
             {SelectedUser?.cart.map((item) => (
               <div className="cartItem">
-                <Link to={`/single/${item.id}`}>
-                  <img src={item.img} alt="" />
+                <Link to={`/single/${item?._id}`}>
+                  <img src={item?.img} alt="" />
                 </Link>
-                <h2>{item.name}</h2>
-                <h2>Price: {item.price}€</h2>
-                <h2>Size: {item.size}</h2>
-                <h2>Quantitiy: {item.quan}</h2>
+                <h2>{item?.name}</h2>
+                <h2>Price: {item?.price}€</h2>
+                <h2>Size: {item?.size}</h2>
+                <h2>Quantitiy: {item?.quan}</h2>
                 <button onClick={() => handleDelete(item)}>Delete</button>
               </div>
             ))}
@@ -145,15 +146,15 @@ function Cart() {
                                         <th>Product Sum</th>
                                     </tr>
                                     <tr>
-                                        <td>{ item.name}</td>
-                                        <td>{ item.id}</td>
-                                        <td>{ item.size}</td>
-                                        <td>{ item.quan}</td>
-                                        <td>{ item.price}€</td>
-                                        <td>{ item.quan * item.price}€</td>
+                                        <td>{ item?.name}</td>
+                                        <td>{ item?.id}</td>
+                                        <td>{ item?.size}</td>
+                                        <td>{ item?.quan}</td>
+                                        <td>{ item?.price}€</td>
+                                        <td>{ item?.quan * item?.price}€</td>
                                         </tr>
                                         <textarea className="inputNone" name="product" id="" cols="30" rows="10">  
-                                            {`[ Product: ${item.name},   ID: ${item.id},   Size: ${item.size},   Quantity: ${item.quan},   Price: ${item.price},   Product Sum: ${item.quan * item.price}€ ]     
+                                            {`[ Product: ${item?.name},   ID: ${item?._id},   Size: ${item?.size},   Quantity: ${item?.quan},   Price: ${item?.price},   Product Sum: ${item?.quan * item?.price}€ ]     
                                                                                   -------------------------------- `}
                                         </textarea>
                                </>

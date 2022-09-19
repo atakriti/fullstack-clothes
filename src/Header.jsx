@@ -2,13 +2,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import {context} from "./ContextFun"
 import "./header.scss"
 import {BsCart2} from "react-icons/bs"
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
+import axios from 'axios'
 function Header() {
-  let { users, signin } = useContext(context)
+  let { users, signin,setSignin } = useContext(context)
+  let navigate = useNavigate()
   let {searchValue,setSearchValue,refreshUsers,setUsers} = useContext(context)
   let found = users.find(foundIt => foundIt.email === signin.email)
   let [SelectedUser, setSelectedUser] = useState(found)
-  console.log(SelectedUser);
+  console.log("this is",SelectedUser);
 
   //! ===================================== This is the must imprtant part =========================
   useEffect(() => {
@@ -26,7 +28,14 @@ function Header() {
 
   let handleSubmit = (e) => {
       e.preventDefault()
-    }
+  }
+  
+  let handleDeleteUser = () => {
+    axios.put(`http://localhost:4000/deleteUser/${SelectedUser._id}`)
+    setSignin({ email: "",
+    password: ""})
+    navigate("/")
+  }
   
   return (
     <header>
@@ -45,6 +54,7 @@ function Header() {
         <strong>Hello <span>{ SelectedUser?.username[0].toUpperCase() + SelectedUser?.username.slice(1)}</span></strong>
         {/* ================ signout ========== */}
         <Link className='anchor' to="/">Sign out</Link>
+        <button onClick={handleDeleteUser}>Delete account</button>        
         {/* ============ Cart ========== */}
         <div>
         <Link to="/cart">
