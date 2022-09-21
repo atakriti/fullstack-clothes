@@ -27,11 +27,11 @@ function Single() {
         if (SelectedUser.cart.some(single => single._id === item._id)) {
             let newArray = SelectedUser.cart.map(itemMapped => itemMapped._id === item._id  ? { ...itemMapped, quan: itemMapped.quan + 1 } : itemMapped)
             setSelectedUser({ ...SelectedUser, cart: newArray })      
-            axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{ ...SelectedUser, cart: newArray })
+            axios.put(`https://clothes-backend.herokuapp.com/users/${SelectedUser._id}`,{ ...SelectedUser, cart: newArray })
             return;
         }
         setDisabledSize(true)
-        axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{ ...SelectedUser, cart: [...SelectedUser.cart, item] })
+        axios.put(`https://clothes-backend.herokuapp.com/users/${SelectedUser._id}`,{ ...SelectedUser, cart: [...SelectedUser.cart, item] })
         setSelectedUser({ ...SelectedUser, cart: [...SelectedUser.cart, item] })
         
     }
@@ -66,7 +66,7 @@ function Single() {
     let handlePlus = (index) => {
         let newArray = SelectedUser.cart.map((item) => item._id === index._id ? {...item,quan:item.quan + 1} : item)
         // let pulsed = state.cart.find((item, i) => i === index)
-        axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{ ...SelectedUser, cart: newArray })
+        axios.put(`https://clothes-backend.herokuapp.com/users/${SelectedUser._id}`,{ ...SelectedUser, cart: newArray })
         setSelectedUser({ ...SelectedUser, cart: newArray })
         
 
@@ -79,13 +79,13 @@ function Single() {
         if (findItem.quan === 1) {
           let filterdOut = SelectedUser.cart.filter((item) => item._id !== index._id)
             setSelectedUser({...SelectedUser, cart: filterdOut })
-            axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: filterdOut })
+            axios.put(`https://clothes-backend.herokuapp.com/users/${SelectedUser._id}`,{...SelectedUser, cart: filterdOut })
           return;
         }
         let newArray = SelectedUser.cart.map((item) => item._id === index._id  ? {...item,quan:item.quan - 1} : item)
         // let pulsed = state.cart.find((item, i) => i === index)
         
-        axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: newArray })
+        axios.put(`https://clothes-backend.herokuapp.com/users/${SelectedUser._id}`,{...SelectedUser, cart: newArray })
         setSelectedUser({...SelectedUser, cart: newArray })
         
     }
@@ -96,7 +96,7 @@ function Single() {
 
     let handleSize = (e) => {
         let newArray = SelectedUser.cart.map((item) => item._id === id  ? { ...item, size: e.target.value } : item)
-        axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: newArray })
+        axios.put(`https://clothes-backend.herokuapp.com/users/${SelectedUser._id}`,{...SelectedUser, cart: newArray })
         setSelectedUser({ ...SelectedUser, cart: newArray })       
         // setDisabledAdd(!disabledAdd)
     }

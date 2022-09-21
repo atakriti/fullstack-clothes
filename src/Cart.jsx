@@ -45,7 +45,7 @@ function Cart() {
       let filterd = SelectedUser.cart.filter((item) => item?._id !== index?._id);
     // setSelectedUser({...SelectedUser,cart:filterd});
     setSelectedUser({...SelectedUser, cart: filterd })
-    axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: filterd })
+    axios.put(`https://clothes-backend.herokuapp.com/users/${SelectedUser._id}`,{...SelectedUser, cart: filterd })
   };
   console.log("select user.........",SelectedUser);
   
@@ -82,7 +82,7 @@ function Cart() {
             (result) => {
               alert("Payment is successfully done, and you will recive a confirmation E-Mail");
               setSelectedUser({ cart: [] })
-              axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{cart:[] })
+              axios.put(`https://clothes-backend.herokuapp.com/users/${SelectedUser._id}`,{cart:[] })
               setIsBuy(false)
              
             },

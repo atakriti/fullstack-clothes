@@ -49,7 +49,7 @@ function Register() {
 
   let handleSubmitSignup = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:4000/users", signup);
+    axios.post("https://clothes-backend.herokuapp.com/users", signup);
       alert("Successfuly Registered");
       //! Have to ask why its not signin untill refresh page
       setSignin({

@@ -46,7 +46,7 @@ function Header() {
   
   let handleDeleteUser = () => {
     if (signin.password === confirmDelete ) {
-      axios.delete(`http://localhost:4000/deleteUser/${SelectedUser._id}`)
+      axios.delete(`https://clothes-backend.herokuapp.com/deleteUser/${SelectedUser._id}`)
     setSignin({ email: "",
     password: ""})
     navigate("/")

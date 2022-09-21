@@ -18,7 +18,7 @@ function Admin() {
     let handleSubmit = (e) => {
         e.preventDefault()
         
-       axios.post("http://localhost:4000/addProduct",values)
+       axios.post("https://clothes-backend.herokuapp.com/addProduct",values)
       
       
       
@@ -43,7 +43,7 @@ function Admin() {
   
   let handleDel = (e) => {
     e.preventDefault()
-    axios.delete(`http://localhost:4000/deleteProduct/${deleteValue}`)
+    axios.delete(`https://clothes-backend.herokuapp.com/deleteProduct/${deleteValue}`)
     alert("The product is Successfuly deleted")
     setDeleteValue("")
     
