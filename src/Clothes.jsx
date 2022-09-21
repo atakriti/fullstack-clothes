@@ -14,7 +14,7 @@ function Clothes() {
 //     return json
 //   }
     let newProduct = async () => {
-        let res = await fetch("http://localhost:4000/newProduct")
+        let res = await fetch("https://clothes-backend.herokuapp.com/newProduct")
         let json = await res.json()
         return json
     }

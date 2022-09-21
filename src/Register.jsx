@@ -18,7 +18,7 @@ function Register() {
   let {users, setUsers,signin, setSignin} = useContext(context)
 
   let getUsers = async () => {
-    let res = await fetch("http://localhost:4000/getUsers");
+    let res = await fetch("https://clothes-backend.herokuapp.com/getUsers");
     let json = await res.json();
     return json;
   };
