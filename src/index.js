@@ -8,8 +8,10 @@ import ContextFun from './ContextFun';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ContextFun>
-  <BrowserRouter>
-    <App />
+    <BrowserRouter>
+    <React.StrictMode>
+        <App />
+        </React.StrictMode>
     </BrowserRouter>
     </ContextFun>
 );
