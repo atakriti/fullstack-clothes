@@ -50,3 +50,26 @@
         }
     }
 }
+
+@media only screen and (max-width:800px) {
+    .register{
+        header{
+            padding: 2% 1%;
+            form{
+                width: 80%;
+                input{
+                    padding: 1.2%;
+                }
+            }
+        }
+
+        .signup{
+            form{
+                width: 80%;
+                input{
+                    padding: 2%;
+                }
+            }
+        }
+    }
+}

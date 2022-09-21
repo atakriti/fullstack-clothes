@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./admin.scss"
 import { context } from './ContextFun'
+import addNotification from 'react-push-notification';
+
 function Admin() {
     let { setClothesState, clothesState } = useContext(context)
     let [values, setValues] = useState({ name: "", price: null, img: "", quan: 1, gender: "", type: "", size: ""})
@@ -24,25 +26,26 @@ function Admin() {
         setClothesState([...clothesState, values])
         e.target.reset()
         setValues({ name: "", price: null, img: "", quan: 1, gender: "", type: "", size: ""})
-        alert("The product is successfuly added")
+      alert("The product is successfuly added")
+      addNotification({
+        title: "Notification",
+        subtitle: "New Product added",
+        message: "A new product just been added",
+        theme: "darkblue",
+        native:true
+      })
     }
   console.log(clothesState);
  
 
   // ================================================== Delete product ==========================
   let [deleteValue,setDeleteValue] = useState("")
-  console.log(typeof deleteValue);
   
   let handleDel = (e) => {
     e.preventDefault()
-    let ifIdExist = clothesState.some(item => item._id === deleteValue)
-    if (ifIdExist) {
-      axios.delete(`http://localhost:4000/deleteProduct/${deleteValue}`)
-      alert("The product is Successfuly deleted")
-      setDeleteValue("")
-    } else {
-      alert("This product is not Exist !")
-    }
+    axios.delete(`http://localhost:4000/deleteProduct/${deleteValue}`)
+    alert("The product is Successfuly deleted")
+    setDeleteValue("")
     
     }
 
@@ -55,13 +58,13 @@ function Admin() {
           <h1>Admin Page</h1>
           <div className="container">
               <form onSubmit={handleSubmit} >
-                  <input onChange={handleChange} placeholder='Product name' type="text" name="name" id="" />
-                  <input onChange={handleChange} placeholder='Product price' type="text" name="price" id="" />
-                  <input onChange={handleChange} placeholder='Product image Link' type="text" name="img" id="" />
+                  <input onChange={handleChange} required placeholder='Product name' type="text" name="name" id="" />
+                  <input onChange={handleChange} required placeholder='Product price' type="text" name="price" id="" />
+                  <input onChange={handleChange} required placeholder='Product image Link' type="text" name="img" id="" />
                  
               
               {/* ==================== option for gender ============= */}
-              <select onChange={handleChange} name="gender" id="">
+              <select required onChange={handleChange} name="gender" id="">
                   <option value="">Select Gender</option>
                   <option value="man all">Men</option>
                   <option value="women all">Women</option>
@@ -220,7 +223,7 @@ function Admin() {
           <h4>Delete Product by ID</h4>
         <form onSubmit={handleDel} action="">
             <input value={deleteValue} onChange={(e)=>setDeleteValue(e.target.value)} type="text" placeholder='Enter Product ID' name="" id="" />
-            <button className='del'>Delete</button>
+            <button disabled={deleteValue.length < 20} className='del'>Delete</button>
         </form>
         </div>
               <Link to="/">Back to Sign up</Link>

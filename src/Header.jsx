@@ -12,7 +12,8 @@ function Header() {
   let [SelectedUser, setSelectedUser] = useState(found)
   console.log("this is", SelectedUser);
   let [confirmDelete, setConfirmDelete] = useState("")
-  let [switchToConfirmDelete,setSwitchToConfirmDelete] = useState(false)
+  let [switchToConfirmDelete, setSwitchToConfirmDelete] = useState(false)
+  let [welcomePop,setWelcomePop] = useState(false)
 
   //! ===================================== This is the must imprtant part =========================
   useEffect(() => {
@@ -28,6 +29,16 @@ function Header() {
   
 //! =========================================================================================
 
+  
+  useEffect(() => {
+    setWelcomePop(true)
+    setTimeout(() => {
+        setWelcomePop(false)
+      },5*1000)
+    },[])
+  
+  
+  
   let handleSubmit = (e) => {
       e.preventDefault()
   }
@@ -59,6 +70,14 @@ function Header() {
         </div>
       </div>
       )}
+      {/* ========================= */}
+      {welcomePop && (
+        <div className="pop">
+          <h1>Welcome {SelectedUser?.username[0].toUpperCase() + SelectedUser?.username.slice(1)}</h1>
+          <h2>Happy Shopping 😊️</h2>
+        </div>
+      )}
+      {/* ============================ */}
 
 
      <div className='left'>

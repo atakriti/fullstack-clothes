@@ -1,237 +1,284 @@
-header{
-    background-color: rgb(58, 49, 49);
+header {
+  background-color: rgb(58, 49, 49);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5%;
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  .left {
+    width: 70%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 0.5%;
-    position: sticky;
-    top: 0;
-    z-index: 4;
-   .left{
-       width: 70%;
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
     //    padding-left: 1%;
-    p{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        width: 10%;
-        font-size: 1.3vw;
-        color: white;
-        h1{
-            color: orangered;
-        }
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 10%;
+      font-size: 1.3vw;
+      color: white;
+      h1 {
+        color: orangered;
+      }
     }
-    form{
-        width: 70%;
-        // margin: 0 4%;
-        // border: 1px white solid;
-        background-color: white;
-        input{
-            width: 100%;
-            font-size: 1.1vw;
-            padding: 0.4% 1%;
-            background-color: transparent;
-            border: none;
-            outline: none;
-        }
-    }
-   }
-
-   .right{
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       width: 30%;
-       padding: 0 1%;
-    strong{
+    form {
+      width: 70%;
+      // margin: 0 4%;
+      // border: 1px white solid;
+      background-color: white;
+      input {
+        width: 100%;
         font-size: 1.1vw;
-        color: white;
-    }
-    .anchor{
-        text-decoration: none;
-        padding: 0.4% 2%;
-        position: relative;
-        color: black;
-        font-size: 0.8vw;
-        // transition: 1s;
-        background-color: white;
-        isolation: isolate;
-        border-radius:5px;
-
-
-       &::after{
-           content: "";
-           position: absolute;
-           background-color: skyblue;
-        border-radius:5px;
-        transition: 0.7s;
-           inset: 0;
-           z-index: -1;
-        width: 0%;
-        
-       }
-       &:hover{
-           &::after{
-               width: 100%;
-        transition: 0.7s;
-           }
-       }
-    }
-
-
-    .delete{
-        padding: 0.4% 2%;
-        position: relative;
-        color: black;
-        font-size: 0.8vw;
-        // transition: 1s;
-        background-color: white;
-        isolation: isolate;
-        border-radius:5px;
+        padding: 0.4% 1%;
+        background-color: transparent;
         border: none;
         outline: none;
+      }
+    }
+  }
 
-       &::after{
-           content: "";
-           position: absolute;
-           background-color: red;
-        border-radius:5px;
+  .right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    padding: 0 1%;
+    strong {
+      font-size: 1.1vw;
+      color: white;
+    }
+    .anchor {
+      text-decoration: none;
+      padding: 0.4% 2%;
+      position: relative;
+      color: black;
+      font-size: 0.8vw;
+      // transition: 1s;
+      background-color: white;
+      isolation: isolate;
+      border-radius: 5px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        background-color: skyblue;
+        border-radius: 5px;
         transition: 0.7s;
-           inset: 0;
-           z-index: -1;
+        inset: 0;
+        z-index: -1;
         width: 0%;
-        
-        
-       }
-       &:hover{
-        color: white;
+      }
+      &:hover {
+        &::after {
+          width: 100%;
+          transition: 0.7s;
+        }
+      }
+    }
 
-           &::after{
-               width: 100%;
+    .delete {
+      padding: 0.4% 2%;
+      position: relative;
+      color: black;
+      font-size: 0.8vw;
+      // transition: 1s;
+      background-color: white;
+      isolation: isolate;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+
+      &::after {
+        content: "";
+        position: absolute;
+        background-color: red;
+        border-radius: 5px;
         transition: 0.7s;
-           }
-       }
-    }
-
-
-
-
-
-
-    div{
-        .cartIcon{
-            font-size: 2vw;
+        inset: 0;
+        z-index: -1;
+        width: 0%;
+      }
+      &:hover {
         color: white;
 
+        &::after {
+          width: 100%;
+          transition: 0.7s;
         }
-        span{
-            font-size: 1.5vw;
-        color: white;
-
-        }
+      }
     }
-   }
 
-   .deleteSubmit{
-       position: fixed;
-       top: 0;
-       right: 0;
-       bottom: 0;
-       left: 0;
-       z-index: 10;
-       background-color: rgba(0, 0, 0, 0.603);
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       .deleteSubContainer{
-           background-color: #fff;
-           height: 30%;
-           min-width: 60%;
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-           justify-content: space-evenly;
-           .IX{
-               width: 5%;
-               padding: 1.4% 0;
-               border: none;
-               background-color: transparent;
-               outline: none;
-               border-radius: 50%;
-               background-color: red;
-               color: #fff;
-               font-weight: bold;
-               &:hover{
-                   background-color: darkred;
-               }
-           }
-           form{
-               width: 60%;
-               display: flex;
-               justify-content: space-between;
-               input{
-                   width: 70%;
-                   padding: 1%;
-                   border: none;
-                   border-bottom: 1px solid #000;
-               }
-               button{
-                   background-color: red;
-                   color: white;
-                   border: none;
-                   width: 20%;
-               font-weight: bold;
-               &:disabled{
-                   background-color: gray;
-               }
+    div {
+      .cartIcon {
+        font-size: 2vw;
+        color: white;
+      }
+      span {
+        font-size: 1.5vw;
+        color: white;
+      }
+    }
+  }
 
-               }
-           }
-       }
-   }
+  .deleteSubmit {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.603);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .deleteSubContainer {
+      background-color: #fff;
+      height: 30%;
+      min-width: 60%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      .IX {
+        width: 5%;
+        padding: 1.4% 0;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        border-radius: 50%;
+        background-color: red;
+        color: #fff;
+        font-weight: bold;
+        &:hover {
+          background-color: darkred;
+        }
+      }
+      h2{
+          text-align: center;
+      }
+      form {
+        width: 60%;
+        display: flex;
+        justify-content: space-between;
+        input {
+          width: 70%;
+          padding: 1%;
+          border: none;
+          border-bottom: 1px solid #000;
+        }
+        button {
+          background-color: red;
+          color: white;
+          border: none;
+          width: 20%;
+          font-weight: bold;
+          &:disabled {
+            background-color: gray;
+          }
+        }
+      }
+    }
+  }
 
+  //    ================Welcome pop =============
+  .pop {
+    position: fixed;
+    z-index: 15;
+    top: 0;
+    right: 40%;
+    left: 40%;
+    //    bottom: 0;
+    width: 20%;
+    background-color: white;
+    padding: 1% 0;
+    animation: pop 2s forwards;
+    transform: translateY(-100%);
+    border-radius: 10px;
+    box-shadow: 0px 5px 6px black;
+    h1 {
+      text-align: center;
+      color: green;
+      font-size: 1.2rem;
+    }
+    h2 {
+      font-size: 1rem;
+      text-align: center;
+      color: green;
+    }
+  }
+}
 
-
-
+@keyframes pop {
+  to {
+    transform: translateY(0%);
+  }
 }
 
 // =================== Media query =====================
-@media only screen and (max-width:800px) {
-    header{
-        flex-wrap: wrap;
-        padding: 0 1%;
-       .left{
-           width: 100%;
-           p{
-               font-size: 4vw;
-               width: 18%;
-           }
-           form{
-               input{
-                   font-size: 4vw;
-               }
-           }
-       }
-       .right{
-           width: 100%;
-           padding: 1%;
-           strong{
-               font-size: 4vw;
-           }
-           .anchor{
-               font-size: 3vw;
-           }
-           div{
-               .cartIcon{
-                   font-size: 5vw;
-               }
-               span{
-                   font-size: 4vw;
-               }
-           }
-       }
+@media only screen and (max-width: 800px) {
+  header {
+    flex-wrap: wrap;
+    padding: 0 1%;
+    .left {
+      width: 100%;
+      p {
+        font-size: 4vw;
+        width: 18%;
+      }
+      form {
+        input {
+          font-size: 4vw;
+        }
+      }
     }
+    .right {
+      width: 100%;
+      padding: 1%;
+      strong {
+        font-size: 4vw;
+      }
+      .anchor,
+      .delete {
+        font-size: 3vw;
+      }
+      div {
+        .cartIcon {
+          font-size: 5vw;
+        }
+        span {
+          font-size: 4vw;
+        }
+      }
+
+     
+    }
+
+    .deleteSubmit {
+        .deleteSubContainer{
+            height: 40%;
+            padding: 2%;
+            .IX{
+                font-size: 6vw;
+                width: 10%;
+            }
+           
+            form{
+                width: 100%;
+                button{
+                    width: 30%;
+                }
+            }
+        }
+    }
+
+    .pop{
+        width: 100%;
+        left: 0;
+        right: 0;
+        
+    }
+  }
 }

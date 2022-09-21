@@ -69,7 +69,8 @@ function Cart() {
     // let name = "anwar"
     let sendEmail = (e) => {
         e.preventDefault();
-    
+        setIsBuy(false)
+
         emailjs
           .sendForm(
             "service_c5khqhu",
@@ -81,6 +82,7 @@ function Cart() {
             (result) => {
               alert("Payment is successfully done, and you will recive a confirmation E-Mail");
               setSelectedUser({ cart: [] })
+              axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{cart:[] })
               setIsBuy(false)
              
             },
