@@ -43,3 +43,36 @@ footer{
       
     }
 }
+
+@media only screen and (max-width:800px) {
+    footer{
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        .left{
+            width: 100%;
+            text-align: center;
+            padding-top: 2%;
+            padding-right: 0;
+            h2{
+                font-size: 1.5rem;
+            }
+            a{
+                font-size: 1.3rem;
+            }
+        }
+
+        .right{
+            flex-direction: column;
+            width: 100%;
+            margin-top: 3%;
+            padding: 0;
+            div{
+                width: 100%;
+                padding: 2% 0;
+                h5{
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+}

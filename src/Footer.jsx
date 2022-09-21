@@ -2,6 +2,7 @@ import React from 'react'
 import "./footer.scss"
 import Android from "./android.png"
 import Window from "./window.png"
+import APK from "./clothes.apk"
 function Footer() {
   return (
       <footer>
@@ -13,7 +14,7 @@ function Footer() {
          <div className='right'>
               <div className="android">
                   <h5>Get this website as App on andorid</h5>
-                  <a ><img src={Android} alt="" /></a>
+                  <a href={APK} download={APK}><img src={Android} alt="" /></a>
               </div>
               <hr />
               <div className="window">
