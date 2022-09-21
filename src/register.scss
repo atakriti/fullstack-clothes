@@ -55,8 +55,15 @@
     .register{
         header{
             padding: 2% 1%;
+            h2{
+                color: white;
+                font-size: 1.5rem;
+                text-align: center;
+                width: 100%;
+                margin-bottom: 2%;
+            }
             form{
-                width: 80%;
+                width: 100%;
                 input{
                     padding: 1.2%;
                 }
