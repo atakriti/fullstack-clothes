@@ -156,8 +156,8 @@ function Clothes() {
         <div className="container">
             
                   {clothesState.filter(filterd).map((item) => (
-                      <div key={item._id} className="items">
-                          <a onClick={() => handleShow(item.img)} className='imgAnchor' >
+                      <div  className="items">
+                          <a title={item._id} onClick={() => handleShow(item.img)} className='imgAnchor' >
                               <img src={item.img} alt="" />
                           </a>
                           <h2>{item.name}</h2>

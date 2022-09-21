@@ -44,11 +44,10 @@ function Cart() {
   let handleDelete = (index) => {
       let filterd = SelectedUser.cart.filter((item) => item?._id !== index?._id);
     // setSelectedUser({...SelectedUser,cart:filterd});
-    setSelectedUser({ cart: filterd })
-    console.log("select user.........",SelectedUser);
-      axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{ cart: filterd })
+    setSelectedUser({...SelectedUser, cart: filterd })
+    axios.put(`http://localhost:4000/users/${SelectedUser._id}`,{...SelectedUser, cart: filterd })
   };
-
+  console.log("select user.........",SelectedUser);
   
 
   let sum = SelectedUser?.cart.reduce(

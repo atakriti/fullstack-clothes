@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useClipboard } from 'react-haiku';
+
 import { Link, useParams } from 'react-router-dom'
 import {BsCart2} from "react-icons/bs"
 import "./single.scss"
@@ -102,7 +104,8 @@ function Single() {
 
 // let disabledSize = SelectedUser.cart.find(item => item.id === Number(id))
     let [disabledSize, setDisabledSize] = useState(false)    
-    let [disabledAdd,setDisabledAdd] = useState(false)
+  let [disabledAdd, setDisabledAdd] = useState(false)
+  const clipboard = useClipboard({ timeout: 2000 });
     console.log("this is select user",SelectedUser);
   return (
       <div className='single'>
@@ -187,7 +190,8 @@ function Single() {
                       <h4>Quantity: { SelectedUser?.cart.map(item => item?._id === id  ? item.quan : "")}</h4>
                       {/* <h4>{ SelectedUser.cart[0].quan}</h4> */}
                       {/* <h4>Quantity: { SelectedUser.cart.map(item => item.quan)}</h4> */}
-                      <button onClick={()=>handleAdd(foundParams)}   >Add to cart</button>
+            <button onClick={() => handleAdd(foundParams)}   >Add to cart</button>
+            <button className='copyBtn' onClick={()=>clipboard.copy(foundParams._id)} >{clipboard.copied ? 'Copied' : 'Copy Product ID'}</button>
                   </span>
               </div>
           </div>

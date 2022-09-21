@@ -29,8 +29,22 @@ function Admin() {
   console.log(clothesState);
  
 
-
-
+  // ================================================== Delete product ==========================
+  let [deleteValue,setDeleteValue] = useState("")
+  console.log(typeof deleteValue);
+  
+  let handleDel = (e) => {
+    e.preventDefault()
+    let ifIdExist = clothesState.some(item => item._id === deleteValue)
+    if (ifIdExist) {
+      axios.delete(`http://localhost:4000/deleteProduct/${deleteValue}`)
+      alert("The product is Successfuly deleted")
+      setDeleteValue("")
+    } else {
+      alert("This product is not Exist !")
+    }
+    
+    }
 
 
 
@@ -197,7 +211,18 @@ function Admin() {
 
 
                   <button>Add product</button>
-              </form>
+        </form>
+        
+
+        {/* ============================= delete ========================= */}
+        <hr />
+        <div className="deletePro">
+          <h4>Delete Product by ID</h4>
+        <form onSubmit={handleDel} action="">
+            <input value={deleteValue} onChange={(e)=>setDeleteValue(e.target.value)} type="text" placeholder='Enter Product ID' name="" id="" />
+            <button className='del'>Delete</button>
+        </form>
+        </div>
               <Link to="/">Back to Sign up</Link>
           </div>
     </div>
