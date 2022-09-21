@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./admin.scss"
 import { context } from './ContextFun'
-import addNotification from 'react-push-notification';
 
 function Admin() {
     let { setClothesState, clothesState } = useContext(context)
@@ -27,13 +26,7 @@ function Admin() {
         e.target.reset()
         setValues({ name: "", price: null, img: "", quan: 1, gender: "", type: "", size: ""})
       alert("The product is successfuly added")
-      addNotification({
-        title: "Notification",
-        subtitle: "New Product added",
-        message: "A new product just been added",
-        theme: "darkblue",
-        native:true
-      })
+     
     }
   console.log(clothesState);
  
