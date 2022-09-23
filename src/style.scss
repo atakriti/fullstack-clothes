@@ -1,22 +1,25 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-button{
-    cursor: pointer;
+button {
+  cursor: pointer;
 }
 
- // ================== Loading ============
- .loading{
-    position: fixed;
-    inset: 0;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.637);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img{
-        width: 10%;
-    }
+// ================== Loading ============
+.loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.637);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 10%;
+  }
 }
