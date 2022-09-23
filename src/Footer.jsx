@@ -16,11 +16,7 @@ function Footer() {
                   <h5>Get this website as App on andorid</h5>
                   <a href={APK} download={APK}><img src={Android} alt="" /></a>
               </div>
-              <hr />
-              <div className="window">
-              <h5>Get this website as App on Window</h5>
-              <a ><img src={Window} alt="" /></a>
-              </div>
+            
          </div>
     </footer>
   )
