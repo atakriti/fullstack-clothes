@@ -5,7 +5,7 @@ import {BsCart2} from "react-icons/bs"
 import { Link,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 function Header() {
-  let { users, signin,setSignin } = useContext(context)
+  let { users, signin,setSignin,welcomePop, setWelcomePop } = useContext(context)
   let navigate = useNavigate()
   let {searchValue,setSearchValue,refreshUsers,setUsers} = useContext(context)
   let found = users.find(foundIt => foundIt.email === signin.email)
@@ -13,7 +13,6 @@ function Header() {
   console.log("this is", SelectedUser);
   let [confirmDelete, setConfirmDelete] = useState("")
   let [switchToConfirmDelete, setSwitchToConfirmDelete] = useState(false)
-  let [welcomePop, setWelcomePop] = useState(false)
 
   //! ===================================== This is the must imprtant part =========================
   useEffect(() => {
@@ -30,13 +29,7 @@ function Header() {
 //! =========================================================================================
 
   
-  useEffect(() => {
-    setWelcomePop(true)
-    setTimeout(() => {
-        setWelcomePop(false)
-      },5*1000)
-    },[])
-  
+ 
   
   
   let handleSubmit = (e) => {

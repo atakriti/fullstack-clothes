@@ -18,7 +18,7 @@ function Register() {
 
 
 
-  let {users, setUsers,signin, setSignin,isLoading,setIsLoading} = useContext(context)
+  let {users, setUsers,signin, setSignin,isLoading,setIsLoading,welcomePop, setWelcomePop} = useContext(context)
 
   let getUsers = async () => {
     let res = await fetch("https://clothes-backend.herokuapp.com/getUsers");
@@ -38,7 +38,10 @@ function Register() {
     let handleSubmitSignin = (e) => {
         e.preventDefault()
         if (users.some(item => item.email === signin.email && item.password === signin.password)) {
-            navigate("/main")
+          navigate("/main")
+          setWelcomePop(true)
+          setTimeout(()=>setWelcomePop(false),7*1000)
+          
         } else if (signin.email === "admin@admin.admin" && signin.password === "admin") {
           navigate("/admin")
         } else {

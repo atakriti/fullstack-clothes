@@ -11,6 +11,7 @@ function ContextFun(props) {
   let [clothesState, setClothesState] = useState([])
   let [newClothes, setNewClothes] = useState([])
   let [isLoading,setIsLoading] = useState(false)
+  let [welcomePop, setWelcomePop] = useState(false)
   
     
     let refreshUsers = async () => {
@@ -49,7 +50,7 @@ function ContextFun(props) {
   
 
   return (
-      <context.Provider value={{clothesState, setClothesState,searchValue,setSearchValue,users, setUsers,signin, setSignin,refreshUsers,newClothes,setNewClothes,newProduct,isLoading,setIsLoading}}>{ props.children}</context.Provider>
+      <context.Provider value={{clothesState, setClothesState,searchValue,setSearchValue,users, setUsers,signin, setSignin,refreshUsers,newClothes,setNewClothes,newProduct,isLoading,setIsLoading,welcomePop, setWelcomePop}}>{ props.children}</context.Provider>
   )
 }
 
