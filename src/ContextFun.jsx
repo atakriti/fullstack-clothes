@@ -9,7 +9,9 @@ function ContextFun(props) {
       });
       let [searchValue,setSearchValue] = useState("")
   let [clothesState, setClothesState] = useState([])
-  let [newClothes,setNewClothes] = useState([])
+  let [newClothes, setNewClothes] = useState([])
+  let [isLoading,setIsLoading] = useState(false)
+  
     
     let refreshUsers = async () => {
         
@@ -37,14 +39,17 @@ function ContextFun(props) {
   
   useEffect(() => {
     // getClothes()
-    newProduct()
-    refreshUsers()
+    setIsLoading(true)
+
+    newProduct().then(()=>setIsLoading(false))
+
+    refreshUsers().then(()=>setIsLoading(false))
     // newProduct()
   },[])
   
 
   return (
-      <context.Provider value={{clothesState, setClothesState,searchValue,setSearchValue,users, setUsers,signin, setSignin,refreshUsers,newClothes,setNewClothes,newProduct}}>{ props.children}</context.Provider>
+      <context.Provider value={{clothesState, setClothesState,searchValue,setSearchValue,users, setUsers,signin, setSignin,refreshUsers,newClothes,setNewClothes,newProduct,isLoading,setIsLoading}}>{ props.children}</context.Provider>
   )
 }
 

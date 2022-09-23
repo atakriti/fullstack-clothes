@@ -5,9 +5,11 @@ import Baner from "./baner.jpg"
 import { Link } from 'react-router-dom'
 import "./clothes.scss"
 import { context } from './ContextFun'
+import Loading from "./loading.gif"
+
 function Clothes() {
 
-    let { searchValue, setSearchValue,clothesState, setClothesState } = useContext(context)
+    let { searchValue, setSearchValue,clothesState, setClothesState,isLoading } = useContext(context)
 //   let getClothes = async () => {
 //     let res = await fetch("http://localhost:4000/data")
 //     let json = await res.json()
@@ -59,7 +61,13 @@ function Clothes() {
     // }
    
   return (
-    <div className='main'>
+      <div className='main'>
+          
+          {isLoading && (
+        <div className="loading">
+        <img src={Loading} alt="" />
+        </div>
+      )}
     {/* ===================== Filter Section ============= */}
     <div className={showFilter ? "showFilter" : "filterSection"}>
         <div className='filterSectionContainer'>

@@ -4,8 +4,9 @@ import "./register.scss";
 import Logo from "./Clothes.png";
 import axios from "axios";
 import { context } from "./ContextFun";
+import Loading from "./loading.gif"
 function Register() {
-    let navigate = useNavigate()
+  let navigate = useNavigate()
   let [step, setStep] = useState(1);
   let [signup, setSignup] = useState({
     username: "",
@@ -15,7 +16,9 @@ function Register() {
     cart: [],
   });
 
-  let {users, setUsers,signin, setSignin} = useContext(context)
+
+
+  let {users, setUsers,signin, setSignin,isLoading,setIsLoading} = useContext(context)
 
   let getUsers = async () => {
     let res = await fetch("https://clothes-backend.herokuapp.com/getUsers");
@@ -23,7 +26,8 @@ function Register() {
     return json;
   };
   useEffect(() => {
-    getUsers().then((res) => setUsers(res));
+    getUsers().then((res) => setUsers(res))
+
   }, []);
   console.log(users);
   // =========================== Signin ==================================
@@ -69,6 +73,15 @@ function Register() {
 
   return (
     <div className="register">
+      {isLoading && (
+        <div className="loading">
+        <img src={Loading} alt="" />
+        </div>
+      )}
+     
+
+
+
       <header>
         <h2>Sign in</h2>
         <form onSubmit={handleSubmitSignin}>

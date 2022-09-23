@@ -13,7 +13,7 @@ function Header() {
   console.log("this is", SelectedUser);
   let [confirmDelete, setConfirmDelete] = useState("")
   let [switchToConfirmDelete, setSwitchToConfirmDelete] = useState(false)
-  let [welcomePop,setWelcomePop] = useState(false)
+  let [welcomePop, setWelcomePop] = useState(false)
 
   //! ===================================== This is the must imprtant part =========================
   useEffect(() => {
