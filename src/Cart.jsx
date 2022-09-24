@@ -148,7 +148,7 @@ function Cart() {
                                     </tr>
                                     <tr>
                                         <td>{ item?.name}</td>
-                                        <td>{ item?.id}</td>
+                                        <td>{ item?._id}</td>
                                         <td>{ item?.size}</td>
                                         <td>{ item?.quan}</td>
                                         <td>{ item?.price}€</td>
