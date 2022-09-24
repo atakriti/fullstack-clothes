@@ -80,7 +80,7 @@ function Cart() {
           )
           .then(
             (result) => {
-              alert("Payment is successfully done, and you will recive a confirmation E-Mail");
+              alert("Payment is successfully done, and you will receive a confirmation E-Mail");
               setSelectedUser({ cart: [] })
               axios.put(`https://clothes-backend.herokuapp.com/users/${SelectedUser._id}`,{cart:[] })
               setIsBuy(false)
