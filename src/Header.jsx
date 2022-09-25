@@ -55,7 +55,7 @@ function Header() {
         <div className="deleteSubmit">
           <div className="deleteSubContainer">
             <button className='IX' onClick={()=>setSwitchToConfirmDelete(false)}>X</button>
-          <h2>Hello {SelectedUser?.username[0].toUpperCase() + SelectedUser?.username.slice(1)}, To delete your account we need to confirm the Password</h2>
+          <h2>Hello {SelectedUser?.username[0].toUpperCase() + SelectedUser?.username.slice(1)}, to delete your account we need to confirm the Password</h2>
           <form action="">
             <input value={confirmDelete} onChange={(e)=>setConfirmDelete(e.target.value)} type="password" placeholder='Confirm your password...' id="" />
             <button disabled={signin.password !== confirmDelete} onClick={handleDeleteUser}>Delete Account</button>
