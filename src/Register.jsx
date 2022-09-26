@@ -44,7 +44,7 @@ function Register() {
           
         } else if (signin.email === "admin@admin.admin" && signin.password === "admin") {
           navigate("/admin")
-        } else {
+        }  else {
             alert("Username or Password is not correct !")
         }
     }
@@ -52,10 +52,18 @@ function Register() {
   // ======================= Sign up =============================================
   let handleChangeSignup = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
+    if (users.some(item => item.email === e.target.value)) {
+      alert("This E-Mail is already used !")
+      setSignup({...signup,email:""})
+    }
+    
+
   };
 
   let handleSubmitSignup = (e) => {
     e.preventDefault();
+   
+   
     axios.post("https://clothes-backend.herokuapp.com/users", signup);
       alert("Successfuly Registered");
       //! Have to ask why its not signin untill refresh page
@@ -123,8 +131,9 @@ function Register() {
                 id=""
                 onChange={handleChangeSignup}
                 value={signup.username}
+                
               />
-              <button onClick={() => setStep(2)}>Next</button>
+              <button disabled={signup.username === ""} onClick={() => setStep(2)}>Next</button>
             </>
           )}
           {/* ========================================= Step 2 ============================= */}
@@ -139,7 +148,7 @@ function Register() {
                 onChange={handleChangeSignup}
                 value={signup.address}
               />
-              <button onClick={() => setStep(3)}>Next</button>
+              <button disabled={signup.address === ""} onClick={() => setStep(3)}>Next</button>
             </>
           )}
           {/* ========================================= Step 3 ============================= */}
@@ -154,7 +163,7 @@ function Register() {
                 onChange={handleChangeSignup}
                 value={signup.email}
               />
-              <button onClick={() => setStep(4)}>Next</button>
+              <button disabled={!signup.email.includes("@")} onClick={() => setStep(4)}>Next</button>
             </>
           )}
           {/* ========================================= Step 4 ============================= */}
@@ -169,7 +178,7 @@ function Register() {
                 onChange={handleChangeSignup}
                 value={signup.password}
               />
-              <button>Sign up</button>
+              <button disabled={signup.password === ""}>Sign up</button>
             </>
           )}
         </form>
