@@ -16,7 +16,7 @@ function ContextFun(props) {
     
     let refreshUsers = async () => {
         
-            let res = await fetch("https://clothes-backend.herokuapp.com/getUsers");
+            let res = await fetch("https://clothes-backend.vercel.app/getUsers");
             let json = await res.json();
             return json       
     }
@@ -33,7 +33,7 @@ function ContextFun(props) {
   //     return json
   // }
   let newProduct = async () => {
-    let res = await fetch("https://clothes-backend.herokuapp.com/newProduct")
+    let res = await fetch("https://clothes-backend.vercel.app/newProduct")
     let json = await res.json()
     return json
 }

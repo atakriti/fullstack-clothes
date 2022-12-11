@@ -21,7 +21,7 @@ function Register() {
   let {users, setUsers,signin, setSignin,isLoading,setIsLoading,welcomePop, setWelcomePop} = useContext(context)
 
   let getUsers = async () => {
-    let res = await fetch("https://clothes-backend.herokuapp.com/getUsers");
+    let res = await fetch("https://clothes-backend.vercel.app/getUsers");
     let json = await res.json();
     return json;
   };
@@ -64,7 +64,7 @@ function Register() {
     e.preventDefault();
    
    
-    axios.post("https://clothes-backend.herokuapp.com/users", signup);
+    axios.post("https://clothes-backend.vercel.app/users", signup);
       alert("Successfuly Registered");
       //! Have to ask why its not signin untill refresh page
       setSignin({

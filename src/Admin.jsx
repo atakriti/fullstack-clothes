@@ -17,7 +17,7 @@ function Admin() {
     let handleSubmit = (e) => {
         e.preventDefault()
         
-       axios.post("https://clothes-backend.herokuapp.com/addProduct",values)
+       axios.post("https://clothes-backend.vercel.app/addProduct",values)
       
       
       
@@ -36,7 +36,7 @@ function Admin() {
   
   let handleDel = (e) => {
     e.preventDefault()
-    axios.delete(`https://clothes-backend.herokuapp.com/deleteProduct/${deleteValue}`)
+    axios.delete(`https://clothes-backend.vercel.app/deleteProduct/${deleteValue}`)
     alert("The product is Successfuly deleted")
     setDeleteValue("")
     
